@@ -1,0 +1,9 @@
+C:\Users\48793603\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.csproj.AssemblyReference.cache
+C:\Users\48793603\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\48793603\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.AssemblyInfoInputs.cache
+C:\Users\48793603\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.AssemblyInfo.cs
+C:\Users\48793603\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.csproj.CoreCompileInputs.cache
+C:\Users\48793603\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\48793603\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.RazorAssemblyInfo.cache
+C:\Users\48793603\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.RazorAssemblyInfo.cs
+C:\Users\48793603\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.sourcelink.json

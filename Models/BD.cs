@@ -7,19 +7,18 @@ namespace ProyectoRepaso.Models;
 public static class BD
 {
     private static string _connectionString = @"Server=localhost; DataBase=TP06; Integrated Security=True; TrustServerCertificate=True;";
-   public void Registrarse(Usuario usuario)
+   public static void Registrarse(Usuario usuario)
    {
-        string query = "INSERT INTO Usuarios (IdUsuario, nombre, apellido, foto, username, ultimoLogin, password) VALUES (@pIdUsuario, @pNombre, @pApellido, @pFoto, @pUsername, @pUltimoLogin, @pPassword)";
+        string query = "INSERT INTO Usuarios (nombre, apellido, foto, username, ultimoLogin, password) VALUES (@pIdUsuario, @pNombre, @pApellido, @pFoto, @pUsername, @pUltimoLogin, @pPassword)";
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
-            connection.Execute(query, new {pIdUsuario = usuario.IdUsuario, pNombre = usuario.nombre, pApellido = usuario.apellido, pFoto = usuario.foto, pUsername = usuario.username, pUltimoLogin = usuario.ultimoLogin, pPassword = usuario.password});
+            connection.Execute(query, new {pNombre = usuario.nombre, pApellido = usuario.apellido, pFoto = usuario.foto, pUsername = usuario.username, pUltimoLogin = usuario.ultimoLogin, pPassword = usuario.password});
         }
    }
-
-   public bool ValidarRegistro(Usuario usuario)
+   public static bool ValidarRegistro(Usuario usuario)
    {
         bool existe = false;
-        user = usuario.username;
+        Usuario user = usuario.username;
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
             string query = "SELECT username FROM Usuarios WHERE username = @pUser";
@@ -27,7 +26,7 @@ public static class BD
         }
         return existe;
    }
-   public Usuario Login (string username, string password)
+   public static Usuario Login (string username, string password)
    {
         Usuario usu = null;
         using(SqlConnection connection = new SqlConnection(_connectionString))
@@ -38,18 +37,18 @@ public static class BD
         return usu;
    }
 
-   public List<Tarea> DevolverTareas (int IdUsuario)
+   public static List<Tarea> DevolverTareas (int IdUsuario)
    {
         List<Tarea> tareas = new List<Tarea>();
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
             string query = "SELECT * FROM Tareas WHERE IdUsuario = @pIdUsuario";
-            tareas = connection.Query<Usuario>(query, new {IdUsuario = pIdUsuario}).ToList();
+            tareas = connection.Query<Tareas>(query, new {IdUsuario = pIdUsuario}).ToList();
         }
         return tareas;
    }
 
-   public Tarea DevolverTarea (int IdTarea)
+   public static Tarea DevolverTarea (int IdTarea)
    {
         Tarea tarea = null;
         using(SqlConnection connection = new SqlConnection(_connectionString))
@@ -60,16 +59,16 @@ public static class BD
         return tarea;
    }
 
-   public void ModificarTarea (Tarea tarea)
+   public static void ModificarTarea (Tarea tarea)
    {
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
             string query = "UPDATE Tareas SET titulo = @pTitulo, descripcion = @pDescripcion, fecha = @pFecha, finalizada = @pFinalizada WHERE IdTarea = @pIdTarea";
-            connection.Execute<Tarea>(query, tarea);
+            connection.Execute(query, tarea);
         }
    }
 
-   public void EliminarTarea (int IdTarea)
+   public static void EliminarTarea (int IdTarea)
    {
         string query = "DELETE FROM Tareas WHERE IdTarea = @pIdTarea";
         using(SqlConnection connection = new SqlConnection(_connectionString))
@@ -78,7 +77,7 @@ public static class BD
         }
    }
 
-   public void CrearTarea (Tarea tarea)
+   public static void CrearTarea (Tarea tarea)
    { 
         string query = "INSERT INTO Tareas (titulo, descripcion, fecha, finalizada) VALUES (@pTitulo, @pDescripcion, @pFecha, @pFinalizada)";
         using(SqlConnection connection = new SqlConnection(_connectionString))
@@ -87,7 +86,7 @@ public static class BD
         }
    }
 
-   public void FinalizarTarea (int IdTarea)
+   public static void FinalizarTarea (int IdTarea)
    {
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
@@ -96,7 +95,7 @@ public static class BD
         }
    }
 
-   public void ActualizarLogin (int IdUsuario)
+   public static void ActualizarLogin (int IdUsuario)
    {
         using(SqlConnection connection = new SqlConnection(_connectionString))
         { //solo queremos actualizar la fecha
