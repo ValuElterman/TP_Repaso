@@ -42,11 +42,11 @@ public static class BD
    {
         List<Tarea> tareas = new List<Tarea>();
         using(SqlConnection connection = new SqlConnection(_connectionString))
-    {
-        string query = "SELECT * FROM Tareas WHERE IdUsuario = @pIdUsuario";
-        tareas = connection.Query<Usuario>(query, new {IdUsuario = pIdUsuario}).ToList();
-    }
-    return tareas;
+        {
+            string query = "SELECT * FROM Tareas WHERE IdUsuario = @pIdUsuario";
+            tareas = connection.Query<Usuario>(query, new {IdUsuario = pIdUsuario}).ToList();
+        }
+        return tareas;
    }
 
    public Tarea DevolverTarea (int IdTarea)
@@ -64,28 +64,44 @@ public static class BD
    {
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
-            string query = "UPDATE Tareas SET";
-            tarea = connection.QueryFirstOrDefault<Tarea>(query, new {IdTarea = pIdTarea});
+            string query = "UPDATE Tareas SET titulo = @pTitulo, descripcion = @pDescripcion, fecha = @pFecha, finalizada = @pFinalizada WHERE IdTarea = @pIdTarea";
+            connection.Execute<Tarea>(query, tarea);
         }
    }
 
    public void EliminarTarea (int IdTarea)
    {
-
+        string query = "DELETE FROM Tareas WHERE IdTarea = @pIdTarea";
+        using(SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            connection.Execute(query, new {IdTarea});
+        }
    }
 
    public void CrearTarea (Tarea tarea)
-   {
-
+   { 
+        string query = "INSERT INTO Tareas (titulo, descripcion, fecha, finalizada) VALUES (@pTitulo, @pDescripcion, @pFecha, @pFinalizada)";
+        using(SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            connection.Execute(query, new {pTitulo = tarea.titulo, pDescripcion = tarea.descripcion, pFecha = tarea.fecha, pFinalizada = tarea.finalizada});
+        }
    }
 
    public void FinalizarTarea (int IdTarea)
    {
-
+        using(SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            string query = "UPDATE Tareas SET finalizada = @pFinalizada WHERE IdTarea = @pIdTarea";
+            connection.Execute(query, new {pFinalizada = true, pIdTarea = IdTarea});
+        }
    }
 
-   public void ActualizarLogin (int IdU)
+   public void ActualizarLogin (int IdUsuario)
    {
-
+        using(SqlConnection connection = new SqlConnection(_connectionString))
+        { //solo queremos actualizar la fecha
+            string query = "UPDATE Usuarios SET ultimoLogin = @pUltimoLogin WHERE IdUsuario = @pIdUsuario";
+            connection.Execute(query, new {pUltimoLogin = DateTime.Now, pIdUsuario = IdUsuario});
+        }
    }
 }
