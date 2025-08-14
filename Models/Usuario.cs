@@ -1,5 +1,8 @@
-using Microsoft.Data.SqlClient;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using ProyectoRepaso.Models;
 using Newtonsoft.Json;
+using Microsoft.Data.SqlClient;
 using Dapper;
 
 namespace ProyectoRepaso.Models;
@@ -7,17 +10,27 @@ namespace ProyectoRepaso.Models;
 public class Usuario
 {
     [JsonProperty]
-    private int IdUsuario{get; set;}
+    public int IdUsuario{get; set;}
     [JsonProperty]
-   private string nombre{get; set;}
+   public string nombre{get; set;}
    [JsonProperty]
-   private string apellido{get; set;}
+   public string apellido{get; set;}
    [JsonProperty]
-   private string foto{get; set;}
+   public string foto{get; set;}
    [JsonProperty]
-   private string  username{get; set;}
+   public string  username{get; set;}
    [JsonProperty]
-   private DateTime ultimoLogin{get; set;}
+   public DateTime ultimoLogin{get; set;}
    [JsonProperty]
-    private string password{get; set;}
+    public string password{get; set;}
+
+    public Usuario (string nombre, string apellido, string foto, string username, DateTime ultimoLogin, string password)
+{
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.foto = foto;
+    this.username = username;
+    this.ultimoLogin = ultimoLogin;
+    this.password = password;
+}
 }

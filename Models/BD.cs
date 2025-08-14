@@ -1,7 +1,9 @@
-using Microsoft.Data.SqlClient;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using ProyectoRepaso.Models;
 using Newtonsoft.Json;
+using Microsoft.Data.SqlClient;
 using Dapper;
-
 namespace ProyectoRepaso.Models;
 
 public static class BD
@@ -17,15 +19,14 @@ public static class BD
    }
    public static bool ValidarRegistro(Usuario usuario)
    {
-        bool existe = false;
-        Usuario user = usuario.username;
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
-            string query = "SELECT username FROM Usuarios WHERE username = @pUser";
-            existe = connection.QueryFirstOrDefault<Usuario>(query, new {pUser = user});
+            string query = "SELECT IdUsuario FROM Usuarios WHERE username = @pUser";
+            Usuario userExistente = connection.QueryFirstOrDefault<Usuario>(query, new { pUser = usuario.username });
+            return userExistente != null;
         }
-        return existe;
    }
+   
    public static Usuario Login (string username, string password)
    {
         Usuario usu = null;
@@ -43,7 +44,7 @@ public static class BD
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
             string query = "SELECT * FROM Tareas WHERE IdUsuario = @pIdUsuario";
-            tareas = connection.Query<Tareas>(query, new {IdUsuario = pIdUsuario}).ToList();
+            tareas = connection.Query<Tarea>(query, new {pIdUsuario = IdUsuario}).ToList();
         }
         return tareas;
    }
@@ -54,7 +55,7 @@ public static class BD
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
             string query = "SELECT * FROM Tareas WHERE IdTarea = @pIdTarea";
-            tarea = connection.QueryFirstOrDefault<Tarea>(query, new {IdTarea = pIdTarea});
+            tarea = connection.QueryFirstOrDefault<Tarea>(query, new {pIdTarea = IdTarea});
         }
         return tarea;
    }
@@ -103,4 +104,5 @@ public static class BD
             connection.Execute(query, new {pUltimoLogin = DateTime.Now, pIdUsuario = IdUsuario});
         }
    }
+
 }

@@ -1,0 +1,13 @@
+ @using ProyectoRepaso.Models;
+ @model Tarea
+ 
+ <form action='@Url.Action("GuardarTareaEditada", "Home")' method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="IdTarea" value="@Model.IdTarea" />
+    <input type="text" name="titulo" value="@Model.titulo" placeholder="titulo" autocomplete = "off"/>
+    <input type="text" name="descripcion" value="@Model.descripcion" placeholder="descripcion"/>
+    <input type="time" name="fecha" value="@Model.fecha.ToString("HH:mm")" placeholder="fecha"/>
+    <input type="radio" name="finalizada" value="@Model.finalizada" placeholder="fecha"/>
+    <input type="submit" value="Guardar"/>
+    </form>
+
+<a href='@Url.Action("VerTareas", "Home")'>Ver Tareas</a>

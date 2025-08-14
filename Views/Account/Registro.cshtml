@@ -1,8 +1,27 @@
- <form action='@Url.Action("GuardarRegistro", "Account")' method="POST" enctype="multipart/form-data">
+  @using ProyectoRepaso.Models;
+  
+  @{
+    ViewData["Title"] = "Registrarse";
+}
+
+<div class="container">
+    <h2>Crear una cuenta</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <p>@ViewBag.Error</p>
+    }
+    @if (ViewBag.Ya != null)
+    {
+        <p>@ViewBag.Ya</p>
+    }
+  <form action='@Url.Action("GuardarRegistro", "Account")' method="POST" enctype="multipart/form-data">
     <input type="text" name="username" placeholder="username" autocomplete = "off"/>
     <input type="password" name="password" placeholder="password"/>
     <input type="text" name="nombre" placeholder="nombre"/>
     <input type="text" name="apellido" placeholder="apellido"/>
     <input type="file" name="foto" placeholder="foto"/>
-    <input type="submit" value="Guardar"/>
+   <button type="submit">Registrarse</button>
     </form>
+<p>¿Ya tienes una cuenta? <a href='@Url.Action("Login", "Account")'>Inicia sesión aquí</a>.</p>
+</div>

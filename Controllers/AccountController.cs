@@ -2,6 +2,8 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoRepaso.Models;
 using Newtonsoft.Json;
+using Microsoft.Data.SqlClient;
+using Dapper;
 
 namespace ProyectoRepaso.Controllers;
 
@@ -14,9 +16,14 @@ public class AccountController : Controller
         _logger = logger;
     }
 
-    public IActionResult Login(int IdUsuario, string nombre, string apellido, string foto, string username, DateTime ultimoLogin, string password)
+    public IActionResult Login()
     {
-        Usuario usu = new Usuario (IdUsuario, nombre, apellido, foto, username, ultimoLogin, password);
+        return View("Login");
+    }
+
+    public IActionResult Comenzar(string nombre, string apellido, string foto, string username, DateTime ultimoLogin, string password)
+    {
+        Usuario usu = new Usuario (nombre, apellido, foto, username, ultimoLogin, password);
         HttpContext.Session.SetString("usu", Objeto.ObjectToString(usu));
         return View("Login");
     }
@@ -24,49 +31,58 @@ public class AccountController : Controller
     [HttpPost]
     public IActionResult GuardarLogin(string username, string password)
     {
-        //prinicpio de session
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
             ViewBag.Error = "Por favor, complete todos los campos.";
             return View("Login");
         }
 
-        usu = BD.Login(username, password);
+         Usuario usu = BD.Login(username, password);
 
         if(usu == null)
         {
-                ViewBag.No = "Tu usuario no existe, por favor registrate.";
-                return View("Registro");
+            ViewBag.No = "Tu usuario no existe, por favor registrate.";
+            return View("Registro");
         }
         else
         {
-                HttpContext.Session.SetString("usu", Objeto.ObjectToString(usu));
-                return RedirectToAction("Index", "Home");
+            BD.ActualizarLogin(usu.IdUsuario);
+            HttpContext.Session.SetString("usu", Objeto.ObjectToString(usu));
+            return RedirectToAction("Index", "Home");
         }
     }
     public IActionResult CerrarSesion()
     {
-        //HACER
+        HttpContext.Session.Clear();
         return View("Login");
     }
     public IActionResult Registro()
     {
         return View("Registro");
     }
-    public IActionResult GuardarRegistro(string username, string password, string nombre, string apellido, string foto)
-    { //prinicpio de session
+    public IActionResult GuardarRegistro(string nombre, string apellido, string foto, string username, DateTime ultimoLogin, string password)
+    {
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(apellido) || string.IsNullOrEmpty(foto))
         {
             ViewBag.Error = "Por favor, complete todos los campos.";
             return View("Registro");
         }
         ultimoLogin = DateTime.Now;
-        Usuario user = new Usuario (username, password, nombre, apellido, foto, ultimoLogin);
-        usu = BD.ValidarRegistro(user);
+        Usuario newUser = new Usuario (nombre, apellido, foto, username, ultimoLogin, password);
+        bool usu = BD.ValidarRegistro(newUser);
         if(usu == false)
         {
-            usu = BD.Registrarse(user);
-            return RedirectToAction("Index", "Home");
+            BD.Registrarse(newUser);
+            if(newUser.IdUsuario != null)
+            {
+                HttpContext.Session.SetString("usu", Objeto.ObjectToString(newUser));
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.Error = "Ocurrió un error al registrarse. Inténtelo de nuevo.";
+            return View("Registro");
+            }
         }
         else
         {

@@ -1,5 +1,8 @@
-using Microsoft.Data.SqlClient;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using ProyectoRepaso.Models;
 using Newtonsoft.Json;
+using Microsoft.Data.SqlClient;
 using Dapper;
 
 namespace ProyectoRepaso.Models;
@@ -7,14 +10,21 @@ namespace ProyectoRepaso.Models;
 public class Tarea
 {
     [JsonProperty]
-    private int IdTarea{get; set;}
+    public int IdTarea{get; set;}
     [JsonProperty]
-    private string titulo{get; set;}
+    public string titulo{get; set;}
     [JsonProperty]
-    private string descripcion{get; set;}
+    public string descripcion{get; set;}
     [JsonProperty]
-    private DateTime fecha{get; set;}
+    public DateTime fecha{get; set;}
     [JsonProperty]
-    private bool finalizada{get; set;}
+    public bool finalizada{get; set;}
 
+public Tarea (string titulo, string descripcion, DateTime fecha, bool finalizada)
+{
+    this.titulo = titulo;
+    this.descripcion = descripcion;
+    this.fecha = fecha;
+    this.finalizada = finalizada;
+}
 }

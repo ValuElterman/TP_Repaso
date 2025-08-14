@@ -1,0 +1,16 @@
+  @using ProyectoRepaso.Models;
+  
+  <form action='@Url.Action("GuardarTareaCreada", "Home")' method="POST" enctype="multipart/form-data">
+    <input type="text" name="titulo" placeholder="titulo" autocomplete = "off"/>
+    <input type="text" name="descripcion" placeholder="descripcion"/>
+    <input type="time" name="fecha" placeholder="fecha"/>
+    <label>
+        <input type="radio" name="finalizada" value="true"> Sí
+    </label>
+    <label>
+        <input type="radio" name="finalizada" value="false" checked> No
+    </label>
+    <input type="submit" value="Guardar"/>
+    </form>
+
+<a href='@Url.Action("VerTareas", "Home")'>Ver Tareas</a>

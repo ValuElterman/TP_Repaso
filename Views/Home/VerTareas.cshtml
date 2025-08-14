@@ -1,0 +1,30 @@
+@using ProyectoRepaso.Models;
+
+<h2>Lista de Tareas</h2>
+<a href='@Url.Action("CrearTarea", "Home")'>Crear Tarea</a>
+
+@if (ViewBag.listaTareas != null)
+{
+<ul>
+    @foreach (var tarea in ViewBag.listaTareas)
+    {
+        <li>
+            <strong>@tarea.Titulo</strong> - 
+            @tarea.Descripcion
+            <br />
+            Estado: @(tarea.Finalizada ? "✅ Completada" : "⏳ Pendiente")
+            <br />
+            <a href='@Url.Action("EditarTarea", "Home", new { id = tarea.IdTarea })'>Editar Tarea</a> |
+            <a href='@Url.Action("EliminarTarea", "Home", new { id = tarea.IdTarea })'>Eliminar Tarea</a> |
+            @if (!tarea.Finalizada)
+            {
+                <a href='@Url.Action("FinalizarTarea", "Home", new { id = tarea.IdTarea })'>Finalizar Tarea</a>
+            }
+        </li>
+    }
+    </ul>
+}
+else
+{
+    <p>No hay tareas para mostrar.</p>
+}

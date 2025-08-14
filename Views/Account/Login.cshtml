@@ -1,5 +1,28 @@
- <form action='@Url.Action("GuardarLogin", "Account")' method="POST" enctype="multipart/form-data">
+ @using ProyectoRepaso.Models;
+ @{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<div class="container">
+    <h2>Iniciar Sesión</h2>
+
+@if (ViewBag.Error != null)
+{
+    <p>@ViewBag.Error</p>
+}
+@if (ViewBag.Ya != null)
+{
+    <p>@ViewBag.Ya</p>
+}
+@if (ViewBag.No != null)
+{
+    <p>@ViewBag.No</p>
+}
+
+  <form action='@Url.Action("GuardarLogin", "Account")' method="POST" enctype="multipart/form-data">
     <input type="text" name="username" placeholder="username" autocomplete = "off"/>
     <input type="password" name="password" placeholder="password"/>
-    <input type="submit" value="Guardar"/>
+     <button type="submit">Entrar</button>
     </form>
+ <p>¿No tienes una cuenta? <a href='@Url.Action("Registro", "Account")'>Regístrate aquí</a>.</p>
+   </div>
