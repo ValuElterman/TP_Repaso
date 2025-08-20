@@ -24,6 +24,10 @@ public class Usuario
    [JsonProperty]
     public string password{get; set;}
 
+    public Usuario()
+    {
+        // Dapper lo necesita para instanciar el objeto.
+    }
     public Usuario (string nombre, string apellido, string foto, string username, DateTime ultimoLogin, string password)
 {
     this.nombre = nombre;

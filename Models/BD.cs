@@ -11,7 +11,7 @@ public static class BD
     private static string _connectionString = @"Server=localhost; DataBase=TP06; Integrated Security=True; TrustServerCertificate=True;";
    public static void Registrarse(Usuario usuario)
    {
-        string query = "INSERT INTO Usuarios (nombre, apellido, foto, username, ultimoLogin, password) VALUES (@pIdUsuario, @pNombre, @pApellido, @pFoto, @pUsername, @pUltimoLogin, @pPassword)";
+        string query = "INSERT INTO Usuarios (nombre, apellido, foto, username, ultimoLogin, password) VALUES (@pNombre, @pApellido, @pFoto, @pUsername, @pUltimoLogin, @pPassword)";
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
             connection.Execute(query, new {pNombre = usuario.nombre, pApellido = usuario.apellido, pFoto = usuario.foto, pUsername = usuario.username, pUltimoLogin = usuario.ultimoLogin, pPassword = usuario.password});
@@ -80,10 +80,10 @@ public static class BD
 
    public static void CrearTarea (Tarea tarea)
    { 
-        string query = "INSERT INTO Tareas (titulo, descripcion, fecha, finalizada) VALUES (@pTitulo, @pDescripcion, @pFecha, @pFinalizada)";
+        string query = "INSERT INTO Tareas (titulo, descripcion, fecha, finalizada, IdUsuario) VALUES (@pTitulo, @pDescripcion, @pFecha, @pFinalizada, @pIdUsuario)";
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
-            connection.Execute(query, new {pTitulo = tarea.titulo, pDescripcion = tarea.descripcion, pFecha = tarea.fecha, pFinalizada = tarea.finalizada});
+            connection.Execute(query, new {pTitulo = tarea.titulo, pDescripcion = tarea.descripcion, pFecha = tarea.fecha, pFinalizada = tarea.finalizada, pIdUsuario = tarea.IdUsuario});
         }
    }
 

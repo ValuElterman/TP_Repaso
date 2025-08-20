@@ -37,18 +37,18 @@ public class AccountController : Controller
             return View("Login");
         }
 
-         Usuario usu = BD.Login(username, password);
+        Usuario usu = BD.Login(username, password);
 
         if(usu == null)
         {
             ViewBag.No = "Tu usuario no existe, por favor registrate.";
-            return View("Registro");
+            return View("Login");
         }
         else
         {
             BD.ActualizarLogin(usu.IdUsuario);
-            HttpContext.Session.SetString("usu", Objeto.ObjectToString(usu));
-            return RedirectToAction("Index", "Home");
+            HttpContext.Session.SetString("usuId", usu.IdUsuario.ToString());
+            return RedirectToAction("VerTareas", "Home");
         }
     }
     public IActionResult CerrarSesion()
@@ -76,12 +76,12 @@ public class AccountController : Controller
             if(newUser.IdUsuario != null)
             {
                 HttpContext.Session.SetString("usu", Objeto.ObjectToString(newUser));
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Comenzar", "Home");
             }
             else
             {
                 ViewBag.Error = "Ocurrió un error al registrarse. Inténtelo de nuevo.";
-            return View("Registro");
+                return View("Registro");
             }
         }
         else

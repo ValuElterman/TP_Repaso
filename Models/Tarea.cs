@@ -20,11 +20,18 @@ public class Tarea
     [JsonProperty]
     public bool finalizada{get; set;}
 
-public Tarea (string titulo, string descripcion, DateTime fecha, bool finalizada)
+    public int IdUsuario{get; set;}
+
+ public Tarea()
+    {
+        
+    }
+public Tarea (string titulo, string descripcion, DateTime fecha, bool finalizada, int IdUsuario)
 {
     this.titulo = titulo;
     this.descripcion = descripcion;
     this.fecha = fecha;
     this.finalizada = finalizada;
+    this.IdUsuario = IdUsuario;
 }
 }

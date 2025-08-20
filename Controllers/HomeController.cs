@@ -21,11 +21,11 @@ public class HomeController : Controller
         return RedirectToAction("Login", "Account");
     }
 
-    public IActionResult Comenzar(string titulo, string descripcion, DateTime fecha, bool finalizada)
+    public IActionResult Comenzar(string titulo, string descripcion, DateTime fecha, bool finalizada, int IdUsuario)
     {
-        Tarea tarea = new Tarea (titulo, descripcion, fecha, finalizada);
+        Tarea tarea = new Tarea (titulo, descripcion, fecha, finalizada, IdUsuario);
         HttpContext.Session.SetString("tar", Objeto.ObjectToString(tarea));
-        return View();
+        return View("VerTareas");
     }
 
     public IActionResult VerTareas(int IdUsuario)
@@ -43,13 +43,20 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult GuardarTareaCreada(string titulo, string descripcion, DateTime fecha, bool finalizada)
     {
-        Tarea tarea = new Tarea (titulo, descripcion, fecha, finalizada);
+        string idUsuarioString = HttpContext.Session.GetString("usuId");
+        if (string.IsNullOrEmpty(idUsuarioString))
+        {
+            return RedirectToAction("Login", "Account");
+        }
+        int idUsuario = int.Parse(idUsuarioString);
+        
+        Tarea tarea = new Tarea (titulo, descripcion, fecha, finalizada, idUsuario);
+        tarea.IdUsuario = idUsuario;
         BD.CrearTarea(tarea);
         ViewBag.tareaCreada = "La tarea fue creada con exito";
-        Usuario usu = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("usu"));
-        List<Tarea> listaTareas = BD.DevolverTareas(usu.IdUsuario);
+        List<Tarea> listaTareas = BD.DevolverTareas(idUsuario);
         HttpContext.Session.SetString("listaTareas", Objeto.ListToString(listaTareas));
-        return View ("VertTareas");
+        return View ("VerTareas");
     }
     public IActionResult EditarTarea(int id)
     {
@@ -62,7 +69,10 @@ public class HomeController : Controller
     }
     public IActionResult GuardarTareaEditada (string titulo, string descripcion, DateTime fecha, bool finalizada)
     {
-        Tarea tarea = new Tarea (titulo, descripcion, fecha, finalizada);
+        string idUsuarioString = HttpContext.Session.GetString("usuId");
+        int idUsuario = int.Parse(idUsuarioString);
+
+        Tarea tarea = new Tarea (titulo, descripcion, fecha, finalizada, idUsuario);
         BD.ModificarTarea(tarea);
         ViewBag.exito = "La tarea fue modificada";
         HttpContext.Session.SetString("tar", Objeto.ObjectToString(tarea));
