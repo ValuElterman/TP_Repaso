@@ -9,14 +9,14 @@
     @foreach (var tarea in ViewBag.listaTareas)
     {
         <li>
-            <strong>@tarea.Titulo</strong> - 
-            @tarea.Descripcion
+            <strong>@tarea.titulo</strong> - 
+            @tarea.descripcion
             <br />
-            Estado: @(tarea.Finalizada ? "✅ Completada" : "⏳ Pendiente")
+            Estado: @(tarea.finalizada ? "✅ Completada" : "⏳ Pendiente")
             <br />
             <a href='@Url.Action("EditarTarea", "Home", new { id = tarea.IdTarea })'>Editar Tarea</a> |
             <a href='@Url.Action("EliminarTarea", "Home", new { id = tarea.IdTarea })'>Eliminar Tarea</a> |
-            @if (!tarea.Finalizada)
+            @if (!tarea.finalizada)
             {
                 <a href='@Url.Action("FinalizarTarea", "Home", new { id = tarea.IdTarea })'>Finalizar Tarea</a>
             }

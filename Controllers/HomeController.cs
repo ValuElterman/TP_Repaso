@@ -48,14 +48,24 @@ public class HomeController : Controller
         {
             return RedirectToAction("Login", "Account");
         }
-        int idUsuario = int.Parse(idUsuarioString);
+        if (string.IsNullOrEmpty(titulo) || string.IsNullOrEmpty(descripcion))
+        {
+            ViewBag.Error = "Por favor, complete los campos de título y descripción.";
+            return View("CrearTareas");
+        }
+          if (fecha == default(DateTime))
+            {
+                fecha = DateTime.Now;
+            }
         
+        int idUsuario = int.Parse(idUsuarioString);
         Tarea tarea = new Tarea (titulo, descripcion, fecha, finalizada, idUsuario);
-        tarea.IdUsuario = idUsuario;
         BD.CrearTarea(tarea);
+
         ViewBag.tareaCreada = "La tarea fue creada con exito";
+
         List<Tarea> listaTareas = BD.DevolverTareas(idUsuario);
-        HttpContext.Session.SetString("listaTareas", Objeto.ListToString(listaTareas));
+         ViewBag.listaTareas = listaTareas;
         return View ("VerTareas");
     }
     public IActionResult EditarTarea(int id)
@@ -67,30 +77,34 @@ public class HomeController : Controller
         }
         return View("ModificarTareas", tareaAEditar);
     }
-    public IActionResult GuardarTareaEditada (string titulo, string descripcion, DateTime fecha, bool finalizada)
+    public IActionResult GuardarTareaEditada (int IdTarea,string titulo, string descripcion, DateTime fecha, bool finalizada)
     {
         string idUsuarioString = HttpContext.Session.GetString("usuId");
         int idUsuario = int.Parse(idUsuarioString);
 
         Tarea tarea = new Tarea (titulo, descripcion, fecha, finalizada, idUsuario);
+        tarea.IdTarea = IdTarea;
         BD.ModificarTarea(tarea);
-        ViewBag.exito = "La tarea fue modificada";
-        HttpContext.Session.SetString("tar", Objeto.ObjectToString(tarea));
+
+        ViewBag.exito = "La tarea fue modificada con éxito";
+
+        List<Tarea> listaTareas = BD.DevolverTareas(idUsuario);
+        ViewBag.listaTareas = listaTareas;
         return View ("VerTareas");
     }
     public IActionResult EliminarTarea(int id)
     {
-        Tarea tareaAEditar = BD.DevolverTarea(id);
-        if(tareaAEditar == null)
+        Tarea tareaAEliminar = BD.DevolverTarea(id);
+        if(tareaAEliminar == null)
         {
-            ViewBag.Error = "no se encontro la tarea";
+            ViewBag.Error = "No se encontró la tarea a eliminar";
         }
         else
         {
             BD.EliminarTarea(id);
-            ViewBag.exito = "La tarea fue eliminada";
+            ViewBag.exito = "La tarea fue eliminada con éxito";
         }
-        return View("VerTareas");
+        return RedirectToAction("VerTareas");
     }
     public IActionResult FinalizarTarea(int id)
     {
@@ -99,6 +113,16 @@ public class HomeController : Controller
         {
             ViewBag.Error = "no se encontro la tarea";
         }
-        return View("ModificarTareas");
+        else
+        {
+            BD.FinalizarTarea(id);
+            ViewBag.exito = "La tarea fue finalizada.";
+        }
+        string idUsuarioString = HttpContext.Session.GetString("usuId");
+        int idUsuario = int.Parse(idUsuarioString);
+
+        List<Tarea> listaTareas = BD.DevolverTareas(idUsuario);
+        ViewBag.listaTareas = listaTareas;
+        return View("VerTareas");
     }
 }

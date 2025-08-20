@@ -65,7 +65,7 @@ public static class BD
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
             string query = "UPDATE Tareas SET titulo = @pTitulo, descripcion = @pDescripcion, fecha = @pFecha, finalizada = @pFinalizada WHERE IdTarea = @pIdTarea";
-            connection.Execute(query, tarea);
+           connection.Execute(query, new { pTitulo = tarea.titulo, pDescripcion = tarea.descripcion, pFecha = tarea.fecha, pFinalizada = tarea.finalizada, pIdTarea = tarea.IdTarea });
         }
    }
 
@@ -74,7 +74,7 @@ public static class BD
         string query = "DELETE FROM Tareas WHERE IdTarea = @pIdTarea";
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
-            connection.Execute(query, new {IdTarea});
+            connection.Execute(query, new { pIdTarea = IdTarea });
         }
    }
 
