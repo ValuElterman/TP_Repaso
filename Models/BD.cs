@@ -9,7 +9,7 @@ namespace ProyectoRepaso.Models;
 public static class BD
 {
     private static string _connectionString = @"Server=localhost; DataBase=TP06; Integrated Security=True; TrustServerCertificate=True;";
-   public static void Registrarse(Usuario usuario)
+public static void Registrarse(Usuario usuario)
    {
         string query = "INSERT INTO Usuarios (nombre, apellido, foto, username, ultimoLogin, password) VALUES (@pNombre, @pApellido, @pFoto, @pUsername, @pUltimoLogin, @pPassword)";
         using (SqlConnection connection = new SqlConnection(_connectionString))

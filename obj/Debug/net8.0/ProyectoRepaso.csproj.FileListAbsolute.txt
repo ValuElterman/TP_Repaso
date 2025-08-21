@@ -91,7 +91,6 @@ C:\Users\49094340\TP_Repaso\obj\Debug\net8.0\ref\ProyectoRepaso.dll
 C:\Users\48855001\TP_Repaso\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\48855001\TP_Repaso\bin\Debug\net8.0\appsettings.json
 C:\Users\48855001\TP_Repaso\bin\Debug\net8.0\ProyectoRepaso.staticwebassets.runtime.json
-C:\Users\48855001\TP_Repaso\bin\Debug\net8.0\ProyectoRepaso.staticwebassets.endpoints.json
 C:\Users\48855001\TP_Repaso\bin\Debug\net8.0\ProyectoRepaso.exe
 C:\Users\48855001\TP_Repaso\bin\Debug\net8.0\ProyectoRepaso.deps.json
 C:\Users\48855001\TP_Repaso\bin\Debug\net8.0\ProyectoRepaso.runtimeconfig.json
@@ -148,7 +147,6 @@ C:\Users\48855001\TP_Repaso\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.D
 C:\Users\48855001\TP_Repaso\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll
 C:\Users\48855001\TP_Repaso\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.csproj.AssemblyReference.cache
-C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\rpswa.dswa.cache.json
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.AssemblyInfoInputs.cache
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.AssemblyInfo.cs
@@ -157,14 +155,9 @@ C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.MvcApplicationPartsA
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.RazorAssemblyInfo.cache
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.RazorAssemblyInfo.cs
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.sourcelink.json
-C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\rjimswa.dswa.cache.json
-C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
-C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\scopedcss\bundle\ProyectoRepaso.styles.css
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\staticwebassets.build.json
-C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\staticwebassets.development.json
-C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\Proyecto.4D15D3D8.Up2Date
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.dll
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\refint\ProyectoRepaso.dll
@@ -244,3 +237,9 @@ C:\Users\48793603\TP_Repaso\obj\Debug\net8.0\scopedcss\bundle\ProyectoRepaso.sty
 C:\Users\48793603\TP_Repaso\obj\Debug\net8.0\Proyecto.4D15D3D8.Up2Date
 C:\Users\48793603\TP_Repaso\obj\Debug\net8.0\ProyectoRepaso.genruntimeconfig.cache
 C:\Users\48793603\TP_Repaso\obj\Debug\net8.0\ref\ProyectoRepaso.dll
+C:\Users\48855001\TP_Repaso\bin\Debug\net8.0\System.Text.Json.dll
+C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\staticwebassets\msbuild.ProyectoRepaso.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\staticwebassets\msbuild.build.ProyectoRepaso.props
+C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.ProyectoRepaso.props
+C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.ProyectoRepaso.props
+C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\staticwebassets.pack.json
