@@ -1,9 +1,10 @@
+<section class="container">
  @using ProyectoRepaso.Models;
  @{
     ViewData["Title"] = "Iniciar Sesión";
 }
 
-<div class="container">
+
     <h2>Iniciar Sesión</h2>
 
 @if (ViewBag.Error != null)
@@ -25,4 +26,4 @@
      <button type="submit">Entrar</button>
     </form>
  <p>¿No tienes una cuenta? <a href='@Url.Action("Registro", "Account")'>Regístrate aquí</a>.</p>
-   </div>
+   </section>

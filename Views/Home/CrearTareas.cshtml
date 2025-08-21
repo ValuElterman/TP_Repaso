@@ -1,5 +1,5 @@
   @using ProyectoRepaso.Models;
-  
+  <section class = "crearTarea">
   <form action='@Url.Action("GuardarTareaCreada", "Home")' method="POST" enctype="multipart/form-data">
     <input type="text" name="titulo" placeholder="titulo" autocomplete = "off"/>
     <input type="text" name="descripcion" placeholder="descripcion"/>
@@ -14,3 +14,4 @@
     </form>
 
 <a href='@Url.Action("VerTareas", "Home")'>Ver Tareas</a>
+</section>

@@ -1,3 +1,4 @@
+ <section class = "Modificar">
  @using ProyectoRepaso.Models;
  @model Tarea
  
@@ -5,7 +6,7 @@
     <input type="hidden" name="IdTarea" value="@Model.IdTarea" />
     <input type="text" name="titulo" value="@Model.titulo" placeholder="titulo" autocomplete = "off"/>
     <input type="text" name="descripcion" value="@Model.descripcion" placeholder="descripcion"/>
-    <input type="time" name="fecha" value="@Model.fecha.ToString("HH:mm")" placeholder="fecha"/>
+    <input type="datetime-local" name="fecha" placeholder="fecha"/>
     <label>
     <input type="radio" name="finalizada" value="@Model.finalizada"> finalizada: Sí
     </label>
@@ -16,3 +17,4 @@
     </form>
 
 <a href='@Url.Action("VerTareas", "Home")'>Ver Tareas</a>
+</section>

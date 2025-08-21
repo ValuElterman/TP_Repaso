@@ -243,3 +243,4 @@ C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\staticwebassets\msbuild.build.Proye
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.ProyectoRepaso.props
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.ProyectoRepaso.props
 C:\Users\48855001\TP_Repaso\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\49094340\TP_Repaso\bin\Debug\net8.0\System.Text.Json.dll

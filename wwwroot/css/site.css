@@ -1,3 +1,8 @@
+*
+{
+
+}
+
 html {
   font-size: 14px;
   min-height: 100%;
@@ -20,4 +25,141 @@ footer {
   padding: 10px;
   background-color: #f8f9fa;
   border-top: 1px solid #e9ecef;
+}
+
+.crearTareas
+{
+  background-color: #82befa;
+}
+
+.container
+{
+  background-color: #82befa;
+  width: 100%;
+  height: 400px;
+  
+}
+
+.container h2
+{
+margin-left: 45%;
+}
+
+.container p
+{
+margin-left: 42%;
+}
+
+.container form
+{
+margin-left: 38%;
+margin-top:5%;
+}
+.Registro
+{
+  background-color: #82befa;
+  width: 100%;
+  height: 400px;
+}
+.Registro h2
+{
+margin-left: 45%;
+}
+
+.Registro form
+{
+margin-left: 45%;
+}
+
+.Registro input
+{
+margin-top: 1%;
+}
+
+.Registro button
+{
+margin-top: 1%;
+}
+
+.Registro p
+{
+  margin-left: 43%;
+margin-top: 1%;
+}
+
+.listaTareas
+{
+  width: 100%;
+  height: 400px;
+  background-color: #82befa;
+}
+
+.listaTareas a
+{
+  font-size: larger;
+}
+
+.listaTareas strong
+{
+  font-size: larger;
+}
+
+.listaTareas p
+{
+  font-size: larger;
+}
+
+.listaTareas a
+{
+  margin-top: 1%;
+}
+
+.Modificar
+{
+  width: 100%;
+  height: 400px;
+  background-color: #82befa;
+}
+
+.Modificar form
+{
+  margin-left: 27%;
+  font-size: larger;
+}
+
+.Modificar a
+{
+  margin-top: 10%;
+  margin-left: 47%;
+  font-size: larger;
+}
+
+.Modificar input
+{
+  margin-top: 2%;
+}
+
+.crearTarea
+{
+  width: 100%;
+  height: 400px;
+  background-color: #82befa;
+}
+
+.crearTarea form
+{
+  margin-left: 27%;
+  font-size: larger;
+}
+
+.crearTarea input
+{
+  margin-top: 2%;
+}
+
+.crearTarea a
+{
+  margin-top: 10%;
+  margin-left: 47%;
+  font-size: larger;
 }

@@ -1,10 +1,11 @@
+ <section class="Registro">
   @using ProyectoRepaso.Models;
   
   @{
     ViewData["Title"] = "Registrarse";
 }
 
-<div class="container">
+
     <h2>Crear una cuenta</h2>
 
     @if (ViewBag.Error != null)
@@ -15,13 +16,13 @@
     {
         <p>@ViewBag.Ya</p>
     }
-  <form action='@Url.Action("GuardarRegistro", "Account")' method="POST" enctype="multipart/form-data">
-    <input type="text" name="username" placeholder="username" autocomplete = "off"/>
-    <input type="password" name="password" placeholder="password"/>
-    <input type="text" name="nombre" placeholder="nombre"/>
-    <input type="text" name="apellido" placeholder="apellido"/>
-    <input type="text" name="foto" placeholder="url de foto"/>
-   <button type="submit">Registrarse</button>
+  <form action='@Url.Action("GuardarRegistro", "Account")' method="POST" enctype="multipart/form-data"><br>
+    <input type="text" name="username" placeholder="username" autocomplete = "off"/><br>
+    <input type="password" name="password" placeholder="password"/><br>
+    <input type="text" name="nombre" placeholder="nombre"/><br>
+    <input type="text" name="apellido" placeholder="apellido"/><br>
+    <input type="text" name="foto" placeholder="url de foto"/><br>
+   <button type="submit">Registrarse</button><br>
     </form>
 <p>¿Ya tienes una cuenta? <a href='@Url.Action("Login", "Account")'>Inicia sesión aquí</a>.</p>
-</div>
+</section>
